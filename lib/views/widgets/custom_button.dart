@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key,required this.text,required this.color, this.onTap});
+  const CustomButton({super.key,required this.text,required this.color, this.onTap,  this.isLoading=false});
 final String text;
 final Color color;
+final bool isLoading;
+
 final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,14 @@ final void Function()? onTap;
           color:color,
         ),
         child: Center(
-          child: Text(
+          child: isLoading?const SizedBox(
+            height: 25,
+            width: 25,
+            child:  CircularProgressIndicator(
+              color: CupertinoColors.black,
+
+            ),
+          ) :Text(
               text,
             style: TextStyle(
               color: CupertinoColors.black,
