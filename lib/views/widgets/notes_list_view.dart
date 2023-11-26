@@ -1,4 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_th/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_th/cubits/notes_cubit/notes_state.dart';
+import 'package:notes_th/models/note_model.dart';
 import 'package:notes_th/views/widgets/custom_notes_item.dart';
 
 class NotesListView extends StatelessWidget {
@@ -6,17 +10,25 @@ class NotesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: ListView.builder(
-          padding: EdgeInsets.zero,
-          itemBuilder: (context,index){
+    return BlocBuilder<NotesCubit,NotesState>(
+      builder: (context,state){
 
-        return const Padding(
-            padding:const EdgeInsets.symmetric(vertical: 4),
-          child: NotesItem(),
-        );
-      }),
+List<NoteModel>notes=BlocProvider.of<NotesCubit>(context).notes??[];
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: ListView.builder(
+          itemCount:notes.length,
+            padding: EdgeInsets.zero,
+            itemBuilder: (context,index){
+
+          return const Padding(
+              padding:const EdgeInsets.symmetric(vertical: 4),
+            child: NotesItem(),
+          );
+        }
+        ),
+      );
+      },
     );
   }
 }
