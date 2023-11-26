@@ -21,9 +21,11 @@ List<NoteModel>notes=BlocProvider.of<NotesCubit>(context).notes??[];
             padding: EdgeInsets.zero,
             itemBuilder: (context,index){
 
-          return const Padding(
+          return  Padding(
               padding:const EdgeInsets.symmetric(vertical: 4),
-            child: NotesItem(),
+            child:  NotesItem(
+              note: notes[index],
+            ),
           );
         }
         ),
