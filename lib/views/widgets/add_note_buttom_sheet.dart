@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:notes_th/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_th/cubits/add_note_cubit/add_note_state.dart';
+import 'package:notes_th/cubits/notes_cubit/notes_cubit.dart';
 
 
 
@@ -21,6 +22,7 @@ if(state is AddNoteFailure){
   print('failed ${state.errMessage}');
 }
 if(state is AddNoteSuccess){
+  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
   Navigator.pop(context);
 }
         },
