@@ -9,3 +9,8 @@ class NotesLoading extends NotesState{}
 class NotesSuccess extends NotesState{
 
 }
+class NotesError extends NotesState{
+  final String errMessage;
+
+  NotesError(this.errMessage);
+}

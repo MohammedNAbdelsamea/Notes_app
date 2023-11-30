@@ -47,6 +47,7 @@ final NoteModel note;
               trailing: IconButton(
                 onPressed: (){
                    note.delete();
+
                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                 },
                 icon: Icon(FontAwesomeIcons.trash,

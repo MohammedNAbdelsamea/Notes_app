@@ -18,5 +18,21 @@ class NotesCubit extends Cubit<NotesState>{
 
 emit(NotesSuccess());
 
+  } // New method for filtering notes based on a search query
+   searchNotes(String searchQuery) {
+    try {
+      emit(NotesLoading());
+
+      // Filter notes based on the search query
+      notes = notes!
+          .where((note) =>
+      note.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
+          note.subTitle.toLowerCase().contains(searchQuery.toLowerCase()))
+          .toList();
+
+      emit(NotesSuccess());
+    } catch (e) {
+      emit(NotesError(e.toString()));
+    }
   }
 }

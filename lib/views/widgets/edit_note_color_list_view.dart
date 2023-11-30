@@ -19,6 +19,7 @@ class _EditNoteColorsListView extends State<EditNoteColorsListView> {
   @override
   void initState(){
     curIdx=kColors.indexOf(Color(widget.note.color));
+
     super.initState();
 
 
